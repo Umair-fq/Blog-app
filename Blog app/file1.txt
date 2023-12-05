@@ -1,0 +1,715 @@
+CST 240 Applied Java Programming: Final Project 
+Due: Sunday November 26, 2023, End of Day
+Directions: For your final project you must create a Playlist for a media player. You will be using JavaFX to create this media player. You will use concepts from Chapters 12: JavaFX GUI Programming and Basics, 13: JavaFX Advanced Controls, and 14: JavaFX Graphics, Effects, and Media. You must include all the files in your project. Please test your project before submission to verify you have no issues. 
+
+Working with Others
+You can work in small groups of 2 (you and ONE other student). A discussion topic will be added to Blackboard for consent from each student. Groups are not required. If you choose to work in a group, you will be responsible for meeting and working together. Groups cannot be changed after they have been created. No self-forming groups will be accepted. Any unapproved group will automatically receive zero points on the project. Please choose your team members wisely.  This project can affect your final grade in the course.
+Requirements for Final Project for CST 240
+•	Must use Java
+•	You must have 10 clean songs
+•	Play Button 
+•	Pause Button
+•	Stop Button
+•	Fast Forward Button
+•	Rewind Button
+•	Title should appear when the song is Playing
+•	 (Place Images on the buttons    etc.)
+•	You must turn in a video explaining all concepts above. Your video must be a minimum of 10 minutes. If you are working in a group, each group member must explain a section of the code. You must show both the output of your project and the implementation in your video. You are allowed to submit a YouTube video, Google Drive link (must have the proper permissions), etc.
+Bonus
+•	Album Cover should appear for each song with the title.
+JavaFX Media Player Video Helpful Tutorials
+•	JavaFX Tutorial - https://youtu.be/9XJicRt_FaI
+
+How to write a Media Player in JavaFX using NetBeans
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide/
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide-part-2/
+All other resources
+www.youtube.com
+
+
+Requirements
+- Two graphical models for data, according to ER and according to the relational
+model.
+- Documentation about the SQL statements that create the database, tables and
+possibly views and procedures (preferably script files).
+“I have created be myself but not sure lf it’s good as it should”
+- A class diagram describing the client application (no details about view classes
+though). “I can do it later with intellij by myself”
+- Well-documented source code for the model part of the client application.
+The database must be able to store information about books, authors, genres, and ratings,
+among other things. users and reviews.
+Note that there is a "many to many" relationship between, for example, album and artist and
+that this should be reflected in your database.
+Functionality in client applications
+General requirements must be met
+1. On the server side, there must be a specific user who represents the client application and
+its rights vis-à-vis the database. This user must only have access to certain tables and may
+only execute SQL statements on these tables. Use GRANT for this (possibly together with
+specific views and/or "stored procedures")
+2. The data returned by a query must be represented in the application by objects of types
+such as Book, Author, Review, User, etc. You must therefore translate the database's
+relations into appropriate classes, i.e. an object model. Connections between tables must be
+reflected in your object model, for example, a book object must have an internal list of
+relevant author objects. All entities mentioned must have appropriate attributes, and so does
+Author (name, date of birth, ...).
+3. The code that communicates with the database must have separate methods for each
+specific question, insert statement, or similar that client applications need to ask the
+database server. The methods must return objects or lists of objects, of types such as CD
+(see point 2). The methods must be declared in a Java interface; the view and controller
+should only know the interface, not the implementation of the interface.
+Note that:
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- Interface The methods must, in order for the interface to be reused with another database
+server, catch any SQL exceptions and instead throw BooksDbException, see code example.
+4. The client must of course not download the entire database, and then select the result on
+the client side. The Select questions should only return the data that is interesting in the
+context.
+5. Transactions shall be implemented where appropriate. If errors occur during a transaction,
+it should result in a rollback.
+6. Every query, insert into or update of the database should be executed in a separate
+thread.The threading is handled in the controller's methods." " Note that you are not allowed
+to update the UI from any thread other than the main thread"
+7. Client applications must have a graphical user interface. The application must follow the
+MVC design pattern.
+8. When the application exits, the connection to the database is guaranteed to be closed.
+Tip: use stage.setOnCloseRequest to handle exit via [X].
+9. It must be possible, via client applications, to add books, with author and genre specified,
+as well as to rate books, a scale 1-5. Note that books can have multiple authors, so it must
+also be possible to add new authors
+10. Adding books and authors is conveniently done via a modal Dialog (see
+javafx.scene.control.Dialog).
+11. It must also be possible to search for books via title, ISBN, author name, grade, and
+genre. Note that there is a "many to many" relationship between the book and the author, so
+there must be a relationship table.
+12. All operations are anonymous.
+13. There must also be users. Anyone can search the database anonymously, but to add
+and delete books the user must be logged in. The user must also be able to review books; a
+review has a text and a date.
+14. A user must only be able to enter one rating/review per book. It must be stated which
+user added a book or an author or review.
+15. It must also be possible to delete books (for logged-in users).
+Some tips
+- If the user should only be able to enter some specific options (eg predefined genres), use
+ComboBox instead of TextField. The result of a search can be presented nicely in a
+TableView (similar to a spreadsheet).
+- Create the database and insert data via MySQL workbench. Then write code for client
+applications that can search and present data with different criteria (title, author name, etc.).
+- Add user can rate a book (use a dialog box).
+- Add user can add new books, first without and then with the author. Use a dialog box as a
+form.
+- Now add that the queries to the database are executed in a "background threadCST 240 Applied Java Programming: Final Project 
+Due: Sunday November 26, 2023, End of Day
+Directions: For your final project you must create a Playlist for a media player. You will be using JavaFX to create this media player. You will use concepts from Chapters 12: JavaFX GUI Programming and Basics, 13: JavaFX Advanced Controls, and 14: JavaFX Graphics, Effects, and Media. You must include all the files in your project. Please test your project before submission to verify you have no issues. 
+
+Working with Others
+You can work in small groups of 2 (you and ONE other student). A discussion topic will be added to Blackboard for consent from each student. Groups are not required. If you choose to work in a group, you will be responsible for meeting and working together. Groups cannot be changed after they have been created. No self-forming groups will be accepted. Any unapproved group will automatically receive zero points on the project. Please choose your team members wisely.  This project can affect your final grade in the course.
+Requirements for Final Project for CST 240
+•	Must use Java
+•	You must have 10 clean songs
+•	Play Button 
+•	Pause Button
+•	Stop Button
+•	Fast Forward Button
+•	Rewind Button
+•	Title should appear when the song is Playing
+•	 (Place Images on the buttons    etc.)
+•	You must turn in a video explaining all concepts above. Your video must be a minimum of 10 minutes. If you are working in a group, each group member must explain a section of the code. You must show both the output of your project and the implementation in your video. You are allowed to submit a YouTube video, Google Drive link (must have the proper permissions), etc.
+Bonus
+•	Album Cover should appear for each song with the title.
+JavaFX Media Player Video Helpful Tutorials
+•	JavaFX Tutorial - https://youtu.be/9XJicRt_FaI
+
+How to write a Media Player in JavaFX using NetBeans
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide/
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide-part-2/
+All other resources
+www.youtube.com
+
+
+Requirements
+- Two graphical models for data, according to ER and according to the relational
+model.
+- Documentation about the SQL statements that create the database, tables and
+possibly views and procedures (preferably script files).
+“I have created be myself but not sure lf it’s good as it should”
+- A class diagram describing the client application (no details about view classes
+though). “I can do it later with intellij by myself”
+- Well-documented source code for the model part of the client application.
+The database must be able to store information about books, authors, genres, and ratings,
+among other things. users and reviews.
+Note that there is a "many to many" relationship between, for example, album and artist and
+that this should be reflected in your database.
+Functionality in client applications
+General requirements must be met
+1. On the server side, there must be a specific user who represents the client application and
+its rights vis-à-vis the database. This user must only have access to certain tables and may
+only execute SQL statements on these tables. Use GRANT for this (possibly together with
+specific views and/or "stored procedures")
+2. The data returned by a query must be represented in the application by objects of types
+such as Book, Author, Review, User, etc. You must therefore translate the database's
+relations into appropriate classes, i.e. an object model. Connections between tables must be
+reflected in your object model, for example, a book object must have an internal list of
+relevant author objects. All entities mentioned must have appropriate attributes, and so does
+Author (name, date of birth, ...).
+3. The code that communicates with the database must have separate methods for each
+specific question, insert statement, or similar that client applications need to ask the
+database server. The methods must return objects or lists of objects, of types such as CD
+(see point 2). The methods must be declared in a Java interface; the view and controller
+should only know the interface, not the implementation of the interface.
+Note that:
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- Interface The methods must, in order for the interface to be reused with another database
+server, catch any SQL exceptions and instead throw BooksDbException, see code example.
+4. The client must of course not download the entire database, and then select the result on
+the client side. The Select questions should only return the data that is interesting in the
+context.
+5. Transactions shall be implemented where appropriate. If errors occur during a transaction,
+it should result in a rollback.
+6. Every query, insert into or update of the database should be executed in a separate
+thread.The threading is handled in the controller's methods." " Note that you are not allowed
+to update the UI from any thread other than the main thread"
+7. Client applications must have a graphical user interface. The application must follow the
+MVC design pattern.
+8. When the application exits, the connection to the database is guaranteed to be closed.
+Tip: use stage.setOnCloseRequest to handle exit via [X].
+9. It must be possible, via client applications, to add books, with author and genre specified,
+as well as to rate books, a scale 1-5. Note that books can have multiple authors, so it must
+also be possible to add new authors
+10. Adding books and authors is conveniently done via a modal Dialog (see
+javafx.scene.control.Dialog).
+11. It must also be possible to search for books via title, ISBN, author name, grade, and
+genre. Note that there is a "many to many" relationship between the book and the author, so
+there must be a relationship table.
+12. All operations are anonymous.
+13. There must also be users. Anyone can search the database anonymously, but to add
+and delete books the user must be logged in. The user must also be able to review books; a
+review has a text and a date.
+14. A user must only be able to enter one rating/review per book. It must be stated which
+user added a book or an author or review.
+15. It must also be possible to delete books (for logged-in users).
+Some tips
+- If the user should only be able to enter some specific options (eg predefined genres), use
+ComboBox instead of TextField. The result of a search can be presented nicely in a
+TableView (similar to a spreadsheet).
+- Create the database and insert data via MySQL workbench. Then write code for client
+applications that can search and present data with different criteria (title, author name, etc.).
+- Add user can rate a book (use a dialog box).
+- Add user can add new books, first without and then with the author. Use a dialog box as a
+form.
+- Now add that the queries to the database are executed in a "background threadCST 240 Applied Java Programming: Final Project 
+Due: Sunday November 26, 2023, End of Day
+Directions: For your final project you must create a Playlist for a media player. You will be using JavaFX to create this media player. You will use concepts from Chapters 12: JavaFX GUI Programming and Basics, 13: JavaFX Advanced Controls, and 14: JavaFX Graphics, Effects, and Media. You must include all the files in your project. Please test your project before submission to verify you have no issues. 
+
+Working with Others
+You can work in small groups of 2 (you and ONE other student). A discussion topic will be added to Blackboard for consent from each student. Groups are not required. If you choose to work in a group, you will be responsible for meeting and working together. Groups cannot be changed after they have been created. No self-forming groups will be accepted. Any unapproved group will automatically receive zero points on the project. Please choose your team members wisely.  This project can affect your final grade in the course.
+Requirements for Final Project for CST 240
+•	Must use Java
+•	You must have 10 clean songs
+•	Play Button 
+•	Pause Button
+•	Stop Button
+•	Fast Forward Button
+•	Rewind Button
+•	Title should appear when the song is Playing
+•	 (Place Images on the buttons    etc.)
+•	You must turn in a video explaining all concepts above. Your video must be a minimum of 10 minutes. If you are working in a group, each group member must explain a section of the code. You must show both the output of your project and the implementation in your video. You are allowed to submit a YouTube video, Google Drive link (must have the proper permissions), etc.
+Bonus
+•	Album Cover should appear for each song with the title.
+JavaFX Media Player Video Helpful Tutorials
+•	JavaFX Tutorial - https://youtu.be/9XJicRt_FaI
+
+How to write a Media Player in JavaFX using NetBeans
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide/
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide-part-2/
+All other resources
+www.youtube.com
+
+
+Requirements
+- Two graphical models for data, according to ER and according to the relational
+model.
+- Documentation about the SQL statements that create the database, tables and
+possibly views and procedures (preferably script files).
+“I have created be myself but not sure lf it’s good as it should”
+- A class diagram describing the client application (no details about view classes
+though). “I can do it later with intellij by myself”
+- Well-documented source code for the model part of the client application.
+The database must be able to store information about books, authors, genres, and ratings,
+among other things. users and reviews.
+Note that there is a "many to many" relationship between, for example, album and artist and
+that this should be reflected in your database.
+Functionality in client applications
+General requirements must be met
+1. On the server side, there must be a specific user who represents the client application and
+its rights vis-à-vis the database. This user must only have access to certain tables and may
+only execute SQL statements on these tables. Use GRANT for this (possibly together with
+specific views and/or "stored procedures")
+2. The data returned by a query must be represented in the application by objects of types
+such as Book, Author, Review, User, etc. You must therefore translate the database's
+relations into appropriate classes, i.e. an object model. Connections between tables must be
+reflected in your object model, for example, a book object must have an internal list of
+relevant author objects. All entities mentioned must have appropriate attributes, and so does
+Author (name, date of birth, ...).
+3. The code that communicates with the database must have separate methods for each
+specific question, insert statement, or similar that client applications need to ask the
+database server. The methods must return objects or lists of objects, of types such as CD
+(see point 2). The methods must be declared in a Java interface; the view and controller
+should only know the interface, not the implementation of the interface.
+Note that:
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- Interface The methods must, in order for the interface to be reused with another database
+server, catch any SQL exceptions and instead throw BooksDbException, see code example.
+4. The client must of course not download the entire database, and then select the result on
+the client side. The Select questions should only return the data that is interesting in the
+context.
+5. Transactions shall be implemented where appropriate. If errors occur during a transaction,
+it should result in a rollback.
+6. Every query, insert into or update of the database should be executed in a separate
+thread.The threading is handled in the controller's methods." " Note that you are not allowed
+to update the UI from any thread other than the main thread"
+7. Client applications must have a graphical user interface. The application must follow the
+MVC design pattern.
+8. When the application exits, the connection to the database is guaranteed to be closed.
+Tip: use stage.setOnCloseRequest to handle exit via [X].
+9. It must be possible, via client applications, to add books, with author and genre specified,
+as well as to rate books, a scale 1-5. Note that books can have multiple authors, so it must
+also be possible to add new authors
+10. Adding books and authors is conveniently done via a modal Dialog (see
+javafx.scene.control.Dialog).
+11. It must also be possible to search for books via title, ISBN, author name, grade, and
+genre. Note that there is a "many to many" relationship between the book and the author, so
+there must be a relationship table.
+12. All operations are anonymous.
+13. There must also be users. Anyone can search the database anonymously, but to add
+and delete books the user must be logged in. The user must also be able to review books; a
+review has a text and a date.
+14. A user must only be able to enter one rating/review per book. It must be stated which
+user added a book or an author or review.
+15. It must also be possible to delete books (for logged-in users).
+Some tips
+- If the user should only be able to enter some specific options (eg predefined genres), use
+ComboBox instead of TextField. The result of a search can be presented nicely in a
+TableView (similar to a spreadsheet).
+- Create the database and insert data via MySQL workbench. Then write code for client
+applications that can search and present data with different criteria (title, author name, etc.).
+- Add user can rate a book (use a dialog box).
+- Add user can add new books, first without and then with the author. Use a dialog box as a
+form.
+- Now add that the queries to the database are executed in a "background threadCST 240 Applied Java Programming: Final Project 
+Due: Sunday November 26, 2023, End of Day
+Directions: For your final project you must create a Playlist for a media player. You will be using JavaFX to create this media player. You will use concepts from Chapters 12: JavaFX GUI Programming and Basics, 13: JavaFX Advanced Controls, and 14: JavaFX Graphics, Effects, and Media. You must include all the files in your project. Please test your project before submission to verify you have no issues. 
+
+Working with Others
+You can work in small groups of 2 (you and ONE other student). A discussion topic will be added to Blackboard for consent from each student. Groups are not required. If you choose to work in a group, you will be responsible for meeting and working together. Groups cannot be changed after they have been created. No self-forming groups will be accepted. Any unapproved group will automatically receive zero points on the project. Please choose your team members wisely.  This project can affect your final grade in the course.
+Requirements for Final Project for CST 240
+•	Must use Java
+•	You must have 10 clean songs
+•	Play Button 
+•	Pause Button
+•	Stop Button
+•	Fast Forward Button
+•	Rewind Button
+•	Title should appear when the song is Playing
+•	 (Place Images on the buttons    etc.)
+•	You must turn in a video explaining all concepts above. Your video must be a minimum of 10 minutes. If you are working in a group, each group member must explain a section of the code. You must show both the output of your project and the implementation in your video. You are allowed to submit a YouTube video, Google Drive link (must have the proper permissions), etc.
+Bonus
+•	Album Cover should appear for each song with the title.
+JavaFX Media Player Video Helpful Tutorials
+•	JavaFX Tutorial - https://youtu.be/9XJicRt_FaI
+
+How to write a Media Player in JavaFX using NetBeans
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide/
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide-part-2/
+All other resources
+www.youtube.com
+
+
+Requirements
+- Two graphical models for data, according to ER and according to the relational
+model.
+- Documentation about the SQL statements that create the database, tables and
+possibly views and procedures (preferably script files).
+“I have created be myself but not sure lf it’s good as it should”
+- A class diagram describing the client application (no details about view classes
+though). “I can do it later with intellij by myself”
+- Well-documented source code for the model part of the client application.
+The database must be able to store information about books, authors, genres, and ratings,
+among other things. users and reviews.
+Note that there is a "many to many" relationship between, for example, album and artist and
+that this should be reflected in your database.
+Functionality in client applications
+General requirements must be met
+1. On the server side, there must be a specific user who represents the client application and
+its rights vis-à-vis the database. This user must only have access to certain tables and may
+only execute SQL statements on these tables. Use GRANT for this (possibly together with
+specific views and/or "stored procedures")
+2. The data returned by a query must be represented in the application by objects of types
+such as Book, Author, Review, User, etc. You must therefore translate the database's
+relations into appropriate classes, i.e. an object model. Connections between tables must be
+reflected in your object model, for example, a book object must have an internal list of
+relevant author objects. All entities mentioned must have appropriate attributes, and so does
+Author (name, date of birth, ...).
+3. The code that communicates with the database must have separate methods for each
+specific question, insert statement, or similar that client applications need to ask the
+database server. The methods must return objects or lists of objects, of types such as CD
+(see point 2). The methods must be declared in a Java interface; the view and controller
+should only know the interface, not the implementation of the interface.
+Note that:
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- Interface The methods must, in order for the interface to be reused with another database
+server, catch any SQL exceptions and instead throw BooksDbException, see code example.
+4. The client must of course not download the entire database, and then select the result on
+the client side. The Select questions should only return the data that is interesting in the
+context.
+5. Transactions shall be implemented where appropriate. If errors occur during a transaction,
+it should result in a rollback.
+6. Every query, insert into or update of the database should be executed in a separate
+thread.The threading is handled in the controller's methods." " Note that you are not allowed
+to update the UI from any thread other than the main thread"
+7. Client applications must have a graphical user interface. The application must follow the
+MVC design pattern.
+8. When the application exits, the connection to the database is guaranteed to be closed.
+Tip: use stage.setOnCloseRequest to handle exit via [X].
+9. It must be possible, via client applications, to add books, with author and genre specified,
+as well as to rate books, a scale 1-5. Note that books can have multiple authors, so it must
+also be possible to add new authors
+10. Adding books and authors is conveniently done via a modal Dialog (see
+javafx.scene.control.Dialog).
+11. It must also be possible to search for books via title, ISBN, author name, grade, and
+genre. Note that there is a "many to many" relationship between the book and the author, so
+there must be a relationship table.
+12. All operations are anonymous.
+13. There must also be users. Anyone can search the database anonymously, but to add
+and delete books the user must be logged in. The user must also be able to review books; a
+review has a text and a date.
+14. A user must only be able to enter one rating/review per book. It must be stated which
+user added a book or an author or review.
+15. It must also be possible to delete books (for logged-in users).
+Some tips
+- If the user should only be able to enter some specific options (eg predefined genres), use
+ComboBox instead of TextField. The result of a search can be presented nicely in a
+TableView (similar to a spreadsheet).
+- Create the database and insert data via MySQL workbench. Then write code for client
+applications that can search and present data with different criteria (title, author name, etc.).
+- Add user can rate a book (use a dialog box).
+- Add user can add new books, first without and then with the author. Use a dialog box as a
+form.
+- Now add that the queries to the database are executed in a "background threadCST 240 Applied Java Programming: Final Project 
+Due: Sunday November 26, 2023, End of Day
+Directions: For your final project you must create a Playlist for a media player. You will be using JavaFX to create this media player. You will use concepts from Chapters 12: JavaFX GUI Programming and Basics, 13: JavaFX Advanced Controls, and 14: JavaFX Graphics, Effects, and Media. You must include all the files in your project. Please test your project before submission to verify you have no issues. 
+
+Working with Others
+You can work in small groups of 2 (you and ONE other student). A discussion topic will be added to Blackboard for consent from each student. Groups are not required. If you choose to work in a group, you will be responsible for meeting and working together. Groups cannot be changed after they have been created. No self-forming groups will be accepted. Any unapproved group will automatically receive zero points on the project. Please choose your team members wisely.  This project can affect your final grade in the course.
+Requirements for Final Project for CST 240
+•	Must use Java
+•	You must have 10 clean songs
+•	Play Button 
+•	Pause Button
+•	Stop Button
+•	Fast Forward Button
+•	Rewind Button
+•	Title should appear when the song is Playing
+•	 (Place Images on the buttons    etc.)
+•	You must turn in a video explaining all concepts above. Your video must be a minimum of 10 minutes. If you are working in a group, each group member must explain a section of the code. You must show both the output of your project and the implementation in your video. You are allowed to submit a YouTube video, Google Drive link (must have the proper permissions), etc.
+Bonus
+•	Album Cover should appear for each song with the title.
+JavaFX Media Player Video Helpful Tutorials
+•	JavaFX Tutorial - https://youtu.be/9XJicRt_FaI
+
+How to write a Media Player in JavaFX using NetBeans
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide/
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide-part-2/
+All other resources
+www.youtube.com
+
+
+Requirements
+- Two graphical models for data, according to ER and according to the relational
+model.
+- Documentation about the SQL statements that create the database, tables and
+possibly views and procedures (preferably script files).
+“I have created be myself but not sure lf it’s good as it should”
+- A class diagram describing the client application (no details about view classes
+though). “I can do it later with intellij by myself”
+- Well-documented source code for the model part of the client application.
+The database must be able to store information about books, authors, genres, and ratings,
+among other things. users and reviews.
+Note that there is a "many to many" relationship between, for example, album and artist and
+that this should be reflected in your database.
+Functionality in client applications
+General requirements must be met
+1. On the server side, there must be a specific user who represents the client application and
+its rights vis-à-vis the database. This user must only have access to certain tables and may
+only execute SQL statements on these tables. Use GRANT for this (possibly together with
+specific views and/or "stored procedures")
+2. The data returned by a query must be represented in the application by objects of types
+such as Book, Author, Review, User, etc. You must therefore translate the database's
+relations into appropriate classes, i.e. an object model. Connections between tables must be
+reflected in your object model, for example, a book object must have an internal list of
+relevant author objects. All entities mentioned must have appropriate attributes, and so does
+Author (name, date of birth, ...).
+3. The code that communicates with the database must have separate methods for each
+specific question, insert statement, or similar that client applications need to ask the
+database server. The methods must return objects or lists of objects, of types such as CD
+(see point 2). The methods must be declared in a Java interface; the view and controller
+should only know the interface, not the implementation of the interface.
+Note that:
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- Interface The methods must, in order for the interface to be reused with another database
+server, catch any SQL exceptions and instead throw BooksDbException, see code example.
+4. The client must of course not download the entire database, and then select the result on
+the client side. The Select questions should only return the data that is interesting in the
+context.
+5. Transactions shall be implemented where appropriate. If errors occur during a transaction,
+it should result in a rollback.
+6. Every query, insert into or update of the database should be executed in a separate
+thread.The threading is handled in the controller's methods." " Note that you are not allowed
+to update the UI from any thread other than the main thread"
+7. Client applications must have a graphical user interface. The application must follow the
+MVC design pattern.
+8. When the application exits, the connection to the database is guaranteed to be closed.
+Tip: use stage.setOnCloseRequest to handle exit via [X].
+9. It must be possible, via client applications, to add books, with author and genre specified,
+as well as to rate books, a scale 1-5. Note that books can have multiple authors, so it must
+also be possible to add new authors
+10. Adding books and authors is conveniently done via a modal Dialog (see
+javafx.scene.control.Dialog).
+11. It must also be possible to search for books via title, ISBN, author name, grade, and
+genre. Note that there is a "many to many" relationship between the book and the author, so
+there must be a relationship table.
+12. All operations are anonymous.
+13. There must also be users. Anyone can search the database anonymously, but to add
+and delete books the user must be logged in. The user must also be able to review books; a
+review has a text and a date.
+14. A user must only be able to enter one rating/review per book. It must be stated which
+user added a book or an author or review.
+15. It must also be possible to delete books (for logged-in users).
+Some tips
+- If the user should only be able to enter some specific options (eg predefined genres), use
+ComboBox instead of TextField. The result of a search can be presented nicely in a
+TableView (similar to a spreadsheet).
+- Create the database and insert data via MySQL workbench. Then write code for client
+applications that can search and present data with different criteria (title, author name, etc.).
+- Add user can rate a book (use a dialog box).
+- Add user can add new books, first without and then with the author. Use a dialog box as a
+form.
+- Now add that the queries to the database are executed in a "background threadCST 240 Applied Java Programming: Final Project 
+Due: Sunday November 26, 2023, End of Day
+Directions: For your final project you must create a Playlist for a media player. You will be using JavaFX to create this media player. You will use concepts from Chapters 12: JavaFX GUI Programming and Basics, 13: JavaFX Advanced Controls, and 14: JavaFX Graphics, Effects, and Media. You must include all the files in your project. Please test your project before submission to verify you have no issues. 
+
+Working with Others
+You can work in small groups of 2 (you and ONE other student). A discussion topic will be added to Blackboard for consent from each student. Groups are not required. If you choose to work in a group, you will be responsible for meeting and working together. Groups cannot be changed after they have been created. No self-forming groups will be accepted. Any unapproved group will automatically receive zero points on the project. Please choose your team members wisely.  This project can affect your final grade in the course.
+Requirements for Final Project for CST 240
+•	Must use Java
+•	You must have 10 clean songs
+•	Play Button 
+•	Pause Button
+•	Stop Button
+•	Fast Forward Button
+•	Rewind Button
+•	Title should appear when the song is Playing
+•	 (Place Images on the buttons    etc.)
+•	You must turn in a video explaining all concepts above. Your video must be a minimum of 10 minutes. If you are working in a group, each group member must explain a section of the code. You must show both the output of your project and the implementation in your video. You are allowed to submit a YouTube video, Google Drive link (must have the proper permissions), etc.
+Bonus
+•	Album Cover should appear for each song with the title.
+JavaFX Media Player Video Helpful Tutorials
+•	JavaFX Tutorial - https://youtu.be/9XJicRt_FaI
+
+How to write a Media Player in JavaFX using NetBeans
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide/
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide-part-2/
+All other resources
+www.youtube.com
+
+
+Requirements
+- Two graphical models for data, according to ER and according to the relational
+model.
+- Documentation about the SQL statements that create the database, tables and
+possibly views and procedures (preferably script files).
+“I have created be myself but not sure lf it’s good as it should”
+- A class diagram describing the client application (no details about view classes
+though). “I can do it later with intellij by myself”
+- Well-documented source code for the model part of the client application.
+The database must be able to store information about books, authors, genres, and ratings,
+among other things. users and reviews.
+Note that there is a "many to many" relationship between, for example, album and artist and
+that this should be reflected in your database.
+Functionality in client applications
+General requirements must be met
+1. On the server side, there must be a specific user who represents the client application and
+its rights vis-à-vis the database. This user must only have access to certain tables and may
+only execute SQL statements on these tables. Use GRANT for this (possibly together with
+specific views and/or "stored procedures")
+2. The data returned by a query must be represented in the application by objects of types
+such as Book, Author, Review, User, etc. You must therefore translate the database's
+relations into appropriate classes, i.e. an object model. Connections between tables must be
+reflected in your object model, for example, a book object must have an internal list of
+relevant author objects. All entities mentioned must have appropriate attributes, and so does
+Author (name, date of birth, ...).
+3. The code that communicates with the database must have separate methods for each
+specific question, insert statement, or similar that client applications need to ask the
+database server. The methods must return objects or lists of objects, of types such as CD
+(see point 2). The methods must be declared in a Java interface; the view and controller
+should only know the interface, not the implementation of the interface.
+Note that:
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- Interface The methods must, in order for the interface to be reused with another database
+server, catch any SQL exceptions and instead throw BooksDbException, see code example.
+4. The client must of course not download the entire database, and then select the result on
+the client side. The Select questions should only return the data that is interesting in the
+context.
+5. Transactions shall be implemented where appropriate. If errors occur during a transaction,
+it should result in a rollback.
+6. Every query, insert into or update of the database should be executed in a separate
+thread.The threading is handled in the controller's methods." " Note that you are not allowed
+to update the UI from any thread other than the main thread"
+7. Client applications must have a graphical user interface. The application must follow the
+MVC design pattern.
+8. When the application exits, the connection to the database is guaranteed to be closed.
+Tip: use stage.setOnCloseRequest to handle exit via [X].
+9. It must be possible, via client applications, to add books, with author and genre specified,
+as well as to rate books, a scale 1-5. Note that books can have multiple authors, so it must
+also be possible to add new authors
+10. Adding books and authors is conveniently done via a modal Dialog (see
+javafx.scene.control.Dialog).
+11. It must also be possible to search for books via title, ISBN, author name, grade, and
+genre. Note that there is a "many to many" relationship between the book and the author, so
+there must be a relationship table.
+12. All operations are anonymous.
+13. There must also be users. Anyone can search the database anonymously, but to add
+and delete books the user must be logged in. The user must also be able to review books; a
+review has a text and a date.
+14. A user must only be able to enter one rating/review per book. It must be stated which
+user added a book or an author or review.
+15. It must also be possible to delete books (for logged-in users).
+Some tips
+- If the user should only be able to enter some specific options (eg predefined genres), use
+ComboBox instead of TextField. The result of a search can be presented nicely in a
+TableView (similar to a spreadsheet).
+- Create the database and insert data via MySQL workbench. Then write code for client
+applications that can search and present data with different criteria (title, author name, etc.).
+- Add user can rate a book (use a dialog box).
+- Add user can add new books, first without and then with the author. Use a dialog box as a
+form.
+- Now add that the queries to the database are executed in a "background threadCST 240 Applied Java Programming: Final Project 
+Due: Sunday November 26, 2023, End of Day
+Directions: For your final project you must create a Playlist for a media player. You will be using JavaFX to create this media player. You will use concepts from Chapters 12: JavaFX GUI Programming and Basics, 13: JavaFX Advanced Controls, and 14: JavaFX Graphics, Effects, and Media. You must include all the files in your project. Please test your project before submission to verify you have no issues. 
+
+Working with Others
+You can work in small groups of 2 (you and ONE other student). A discussion topic will be added to Blackboard for consent from each student. Groups are not required. If you choose to work in a group, you will be responsible for meeting and working together. Groups cannot be changed after they have been created. No self-forming groups will be accepted. Any unapproved group will automatically receive zero points on the project. Please choose your team members wisely.  This project can affect your final grade in the course.
+Requirements for Final Project for CST 240
+•	Must use Java
+•	You must have 10 clean songs
+•	Play Button 
+•	Pause Button
+•	Stop Button
+•	Fast Forward Button
+•	Rewind Button
+•	Title should appear when the song is Playing
+•	 (Place Images on the buttons    etc.)
+•	You must turn in a video explaining all concepts above. Your video must be a minimum of 10 minutes. If you are working in a group, each group member must explain a section of the code. You must show both the output of your project and the implementation in your video. You are allowed to submit a YouTube video, Google Drive link (must have the proper permissions), etc.
+Bonus
+•	Album Cover should appear for each song with the title.
+JavaFX Media Player Video Helpful Tutorials
+•	JavaFX Tutorial - https://youtu.be/9XJicRt_FaI
+
+How to write a Media Player in JavaFX using NetBeans
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide/
+•	https://blog.idrsolutions.com/2014/11/write-media-player-javafx-using-netbeans-ide-part-2/
+All other resources
+www.youtube.com
+
+
+Requirements
+- Two graphical models for data, according to ER and according to the relational
+model.
+- Documentation about the SQL statements that create the database, tables and
+possibly views and procedures (preferably script files).
+“I have created be myself but not sure lf it’s good as it should”
+- A class diagram describing the client application (no details about view classes
+though). “I can do it later with intellij by myself”
+- Well-documented source code for the model part of the client application.
+The database must be able to store information about books, authors, genres, and ratings,
+among other things. users and reviews.
+Note that there is a "many to many" relationship between, for example, album and artist and
+that this should be reflected in your database.
+Functionality in client applications
+General requirements must be met
+1. On the server side, there must be a specific user who represents the client application and
+its rights vis-à-vis the database. This user must only have access to certain tables and may
+only execute SQL statements on these tables. Use GRANT for this (possibly together with
+specific views and/or "stored procedures")
+2. The data returned by a query must be represented in the application by objects of types
+such as Book, Author, Review, User, etc. You must therefore translate the database's
+relations into appropriate classes, i.e. an object model. Connections between tables must be
+reflected in your object model, for example, a book object must have an internal list of
+relevant author objects. All entities mentioned must have appropriate attributes, and so does
+Author (name, date of birth, ...).
+3. The code that communicates with the database must have separate methods for each
+specific question, insert statement, or similar that client applications need to ask the
+database server. The methods must return objects or lists of objects, of types such as CD
+(see point 2). The methods must be declared in a Java interface; the view and controller
+should only know the interface, not the implementation of the interface.
+Note that:
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- You must add abstract methods to the interface that correspond to the necessary
+operations that the client needs to perform against the database server.
+- Interface The methods must, in order for the interface to be reused with another database
+server, catch any SQL exceptions and instead throw BooksDbException, see code example.
+4. The client must of course not download the entire database, and then select the result on
+the client side. The Select questions should only return the data that is interesting in the
+context.
+5. Transactions shall be implemented where appropriate. If errors occur during a transaction,
+it should result in a rollback.
+6. Every query, insert into or update of the database should be executed in a separate
+thread.The threading is handled in the controller's methods." " Note that you are not allowed
+to update the UI from any thread other than the main thread"
+7. Client applications must have a graphical user interface. The application must follow the
+MVC design pattern.
+8. When the application exits, the connection to the database is guaranteed to be closed.
+Tip: use stage.setOnCloseRequest to handle exit via [X].
+9. It must be possible, via client applications, to add books, with author and genre specified,
+as well as to rate books, a scale 1-5. Note that books can have multiple authors, so it must
+also be possible to add new authors
+10. Adding books and authors is conveniently done via a modal Dialog (see
+javafx.scene.control.Dialog).
+11. It must also be possible to search for books via title, ISBN, author name, grade, and
+genre. Note that there is a "many to many" relationship between the book and the author, so
+there must be a relationship table.
+12. All operations are anonymous.
+13. There must also be users. Anyone can search the database anonymously, but to add
+and delete books the user must be logged in. The user must also be able to review books; a
+review has a text and a date.
+14. A user must only be able to enter one rating/review per book. It must be stated which
+user added a book or an author or review.
+15. It must also be possible to delete books (for logged-in users).
+Some tips
+- If the user should only be able to enter some specific options (eg predefined genres), use
+ComboBox instead of TextField. The result of a search can be presented nicely in a
+TableView (similar to a spreadsheet).
+- Create the database and insert data via MySQL workbench. Then write code for client
+applications that can search and present data with different criteria (title, author name, etc.).
+- Add user can rate a book (use a dialog box).
+- Add user can add new books, first without and then with the author. Use a dialog box as a
+form.
+- Now add that the queries to the database are executed in a "background thread

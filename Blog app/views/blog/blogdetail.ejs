@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head')%>
+<body>
+
+    <%- include('../partials/nav')%>
+
+    <section class="blogdetails">
+        <h2><%= blog.title %></h2>
+        <p><%= blog.snippet %></p>
+        <p><%= blog.body%></p>
+        <div>
+            <a class="delete" data-doc="<%= blog._id %>">delete</a>
+        </div>
+    </section>
+
+    
+    <%- include('../partials/footer')%>
+
+    <script>
+        const deleteBlog = document.querySelector('a.delete');
+        deleteBlog.addEventListener('click', (e) => {
+            const endpoint = `/blogs/${deleteBlog.dataset.doc}`;
+            //console.log("hello")
+            // this is fetch api, when it goes on sever it will tell that it is delete request
+        fetch(endpoint, {
+            method: 'DELETE'
+        })
+        .then((response) => {
+            response.json()
+        })
+        .then((data) => {
+            console.log(data)
+            window.location.href = data.redirect
+
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        })
+
+        
+    </script>
+</body>
+</html>
